@@ -1,0 +1,64 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+   
+    android:id="@+id/frame_container"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FFFFFF"  
+    >
+
+ 	<LinearLayout	    
+ 	    android:layout_width="match_parent"
+ 	    android:layout_height="48dp"
+ 	    android:background="#B7783B"
+ 	    android:layout_gravity="bottom"
+ 	    android:gravity="bottom" >
+ 	    <Button 
+ 	        android:layout_height="match_parent"
+ 	        android:layout_width="0dp"
+ 	        android:background="@null"
+ 	        android:layout_weight="1"
+ 	        android:id="@+id/btn_latest"
+ 	        android:textColor="#FFFF66"
+ 	        android:text="@string/tv_latest"
+ 	        />
+ 	    <Button 
+ 	        android:textColor="#FFFFFF"
+ android:id="@+id/btn_today"
+ 	        android:background="@null"
+ 	        android:layout_height="match_parent"
+ 	        android:layout_width="0dp"
+ 	        android:layout_weight="1"
+ 	        android:text="@string/tv_today"
+ 	        />
+ 	    <Button 
+ 	        android:textColor="#FFFFFF"
+ 	        android:layout_height="match_parent"
+ 	        android:background="@null"
+ 	        android:layout_width="0dp"
+ 	        android:id="@+id/btn_true"
+ 	        android:layout_weight="1"
+ 	        android:text="@string/tv_true"
+ 	        />
+ 	    <Button 
+ 	        android:textColor="#FFFFFF"
+ 	        android:id="@+id/btn_contribute"
+ 	        android:layout_height="match_parent"
+ 	        android:background="@null"
+ 	        android:layout_width="0dp"
+ 	        android:layout_weight="1"
+ 	        android:text="@string/tv_contribute"
+ 	        />
+ 	    <Button 
+ 	        android:textColor="#FFFFFF"
+ 	        android:id="@+id/btn_cydb"
+ 	        android:layout_height="match_parent"
+ 	        android:background="@null"
+ 	        android:layout_width="0dp"
+ 	        android:layout_weight="1"
+ 	        android:singleLine="true"
+ 	        android:ellipsize="end"
+ 	        android:text="@string/tv_cydb"
+ 	        />
+ 	</LinearLayout>
+
+</FrameLayout>

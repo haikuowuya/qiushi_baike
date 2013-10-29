@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">qiushi_baike</string>
+    <string name="tv_show_img">查看图片</string>
+    <string name="tv_loading_data">正在获取数据……</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="menu_settings">Settings</string>
+
+    <string name="pull_to_refresh_pull_label">下拉刷新…</string>
+    <string name="pull_to_refresh_release_label">放开以刷新…</string>
+    <string name="pull_to_refresh_refreshing_label">正在载入…</string>
+ <string name="pull_to_refresh_from_bottom_pull_label">@string/pull_to_refresh_pull_label</string>
+    <string name="pull_to_refresh_from_bottom_release_label">@string/pull_to_refresh_release_label</string>
+    <string name="pull_to_refresh_from_bottom_refreshing_label">@string/pull_to_refresh_refreshing_label</string>
+    <string name="tv_latest">最新</string>
+    <string name="tv_today">今日</string>
+    <string name="tv_true">真相</string>
+    <string name="tv_contribute">最热</string>
+    <string name="tv_cydb">穿衣打扮</string>
+    
+</resources>
