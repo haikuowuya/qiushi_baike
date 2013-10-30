@@ -14,7 +14,10 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.webkit.WebSettings.TextSize;
+import android.webkit.WebChromeClient;
 import android.webkit.WebView;
+import android.webkit.WebViewClient;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
@@ -61,14 +64,43 @@ public class WebViewFragment extends Fragment
 		new WebContentTask().execute(mURL);
 	}
 
+	@SuppressWarnings("deprecation")
 	private void initWebView()
 	{
 		this.mWebView.getSettings().setJavaScriptEnabled(true);
 		this.mWebView.getSettings().setDefaultTextEncodingName("UTF-8");
 		this.mWebView.setInitialScale(100);
-		this.mWebView.getSettings().setUseWideViewPort(true);
+		//this.mWebView.getSettings().setUseWideViewPort(true);
 		this.mWebView.getSettings().setLoadWithOverviewMode(true);
+		this.mWebView.getSettings().setTextSize(TextSize.NORMAL);
+		initWebViewClient();
 		
+	}
+
+	private void initWebViewClient()
+	{
+		this.mWebView.setWebViewClient(new WebViewClient()
+		{
+			@Override
+			public void onPageFinished(WebView view, String url)
+			{
+				
+				super.onPageFinished(view, url);
+			}
+		});
+		this.mWebView.setWebChromeClient(new WebChromeClient(){
+			@Override
+			public void onProgressChanged(WebView view, int newProgress)
+			{
+				 if(newProgress ==100)
+				 {
+					 mProgressBar.setVisibility(View.GONE);
+						mTextView.setVisibility(View.GONE);
+				 }
+				super.onProgressChanged(view, newProgress);
+			}
+			
+		});
 	}
 
 	private class WebContentTask extends AsyncTask<String, Float, String>
@@ -113,8 +145,7 @@ public class WebViewFragment extends Fragment
 		 
 			if (null != result)
 			{
-				mProgressBar.setVisibility(View.GONE);
-				mTextView.setVisibility(View.GONE);
+			
  				mWebView.loadData(result, "text/html; charset=UTF-8",null);				
 			}
 		}

@@ -16,9 +16,10 @@ public class MainActivity extends BaseActivity implements OnClickListener
 	private Button mBtnToday;
 	private Button mBtnTrue;
 	private Button mBtnLatest;
+	private int mBtnId;
 	// 投稿 先用8小时最糗来代替
 	private Button mBtnContribute;
-	//穿衣打扮
+	// 穿衣打扮
 	private Button mBtnCYDB;
 
 	@Override
@@ -48,6 +49,7 @@ public class MainActivity extends BaseActivity implements OnClickListener
 		this.mBtnToday = (Button) findViewById(R.id.btn_today);
 		this.mBtnTrue = (Button) findViewById(R.id.btn_true);
 		this.mBtnCYDB = (Button) findViewById(R.id.btn_cydb);
+		this.mBtnId = this.mBtnLatest.getId();
 	}
 
 	@Override
@@ -66,35 +68,38 @@ public class MainActivity extends BaseActivity implements OnClickListener
 		this.mBtnTrue.setTextColor(Color.parseColor("#FFFFFF"));
 		this.mBtnCYDB.setTextColor(Color.parseColor("#FFFFFF"));
 	}
+
 	@Override
 	public void onClick(View v)
 	{
-		defaultBtnTextColor();
-		((Button) v).setTextColor(Color.parseColor("#FFFF66"));
-		switch (v.getId())
+		if (mBtnId != v.getId())
 		{
-		case R.id.btn_latest:
-			mType = "late";
+			defaultBtnTextColor();
+			((Button) v).setTextColor(Color.parseColor("#FFFF66"));
+			mBtnId = v.getId();
+			switch (v.getId())
+			{
+			case R.id.btn_latest:
+				mType = "late";
+				break;
+			case R.id.btn_contribute:
+				mType = "8hr";
+				break;
+			case R.id.btn_today:
+				mType = "hot";
+				break;
+			case R.id.btn_true:
+				mType = "imgrank";
+				break;
+			case R.id.btn_cydb:// 穿衣打扮
 
-			break;
-		case R.id.btn_contribute:
-			mType = "8hr";
-			break;
-		case R.id.btn_today:
-			mType = "hot";
-			break;
-		case R.id.btn_true:
-			mType = "imgrank";
-			break;
-		case R.id.btn_cydb://穿衣打扮
-			getSupportFragmentManager().beginTransaction().replace(R.id.frame_container,ChuanYiFragment.newInstance()).commit();
-			return;
-		default:
-			break;
+				getSupportFragmentManager().beginTransaction().replace(R.id.frame_container, ChuanYiFragment.newInstance()).commit();
+				return;
+			default:
+				break;
+			}
+			getSupportFragmentManager().beginTransaction().replace(R.id.frame_container, MainFragment.newInstance(mType)).commit();
 		}
-
-		getSupportFragmentManager().beginTransaction().replace(R.id.frame_container, MainFragment.newInstance(mType)).commit();
-
 	}
 
 }
