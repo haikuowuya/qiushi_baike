@@ -1,16 +1,16 @@
 # built application files
-*.apk
-*.ap_
+*.apk #忽略所有以.apk结尾的文件
+*.ap_ #忽略所有以.ap_结尾的文件
 
 # files for the dex VM
-*.dex
+*.dex #忽略所有以.dex结尾的文件
 
 # Java class files
-*.class
+*.class #忽略所以以.class结尾的文件
 
 # generated files
-bin/
-gen/
+bin/ #忽略bin目录下的所有文件
+gen/ #忽略gen目录下的所有文件
 
 # Local configuration file (sdk path, etc)
 local.properties
