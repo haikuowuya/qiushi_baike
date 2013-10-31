@@ -15,18 +15,23 @@
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
         <activity
-            android:name="com.roboo.qiushibaike.MainActivity"
+            android:name=".HomeActivity"
     
             android:label="@string/app_name" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+              
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".MainActivity"></activity>
+        <activity android:name=".CYDBActivity"></activity>
         <activity android:name=".ShowImgActivity"/>
         <activity android:name=".UserQiuShiActivity"/>
         <activity android:name=".WebViewActivity"/>
         <activity android:name=".CommentActivity"/>
+        <service android:name=".MyService" />
+        <service android:name=".MyIntentService" />
     </application>
 
 </manifest>

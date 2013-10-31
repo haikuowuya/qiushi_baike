@@ -58,6 +58,7 @@ public class ChuanYiFragment extends Fragment
 	{
 
 		View view = inflater.inflate(R.layout.ptr_listview, null);
+		view.setPadding(0, 0, 0, 0);
 		mPTRListView = (PullToRefreshListView) view.findViewById(R.id.ptr_listview);
 		mTextView = (TextView) view.findViewById(R.id.tv_text);
 		mRoundProgressBar = (RoundProgressBar) view.findViewById(R.id.roundProgressBar);

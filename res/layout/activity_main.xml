@@ -57,6 +57,7 @@
  	        android:layout_weight="1"
  	        android:singleLine="true"
  	        android:ellipsize="end"
+ 	        android:visibility="gone"
  	        android:text="@string/tv_cydb"
  	        />
  	</LinearLayout>

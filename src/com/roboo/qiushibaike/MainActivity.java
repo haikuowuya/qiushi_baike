@@ -62,6 +62,7 @@ public class MainActivity extends BaseActivity implements OnClickListener
 
 	private void defaultBtnTextColor()
 	{
+		
 		this.mBtnContribute.setTextColor(Color.parseColor("#FFFFFF"));
 		this.mBtnLatest.setTextColor(Color.parseColor("#FFFFFF"));
 		this.mBtnToday.setTextColor(Color.parseColor("#FFFFFF"));
