@@ -8,7 +8,6 @@ import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
-import com.roboo.qiushibaike.model.ChuanYiItem;
 import com.roboo.qiushibaike.model.KJFMItem;
 
 /**
@@ -42,7 +41,11 @@ public class KJFMUtils
 					if (null != aTags && aTags.size() > 0)
 					{
 						String url1 = aTags.get(0).attr("href");
-					//	System.out.println("url1 = " + url1);
+						System.out.println("url1 = " + url1);
+						if(url1 != null && url1.startsWith("www"))
+						{
+							url1 +="http://";
+						}
 						item.title = url1;
 					}
 					Elements imgTags = e.getElementsByTag("img");

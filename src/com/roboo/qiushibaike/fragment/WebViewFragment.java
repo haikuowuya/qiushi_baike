@@ -22,6 +22,7 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.roboo.qiushibaike.R;
+import com.roboo.qiushibaike.model.BaseItem;
 import com.roboo.qiushibaike.model.CSDNItem;
 import com.roboo.qiushibaike.model.ChuanYiItem;
 import com.roboo.qiushibaike.model.KJFMItem;
@@ -32,9 +33,7 @@ public class WebViewFragment extends Fragment
 {
 	private WebView mWebView;
 	private static final String ARG_ITEM = "item";
-	private ChuanYiItem mChuanYiItem;
-	private KJFMItem mKjfmItem;
-	private CSDNItem mCsdnItem;
+	private BaseItem mBaseItem;
 	private RoundProgressBar mRoundProgressBar;
 	private ProgressBar mProgressBar;
 	private TextView mTextView;
@@ -44,18 +43,11 @@ public class WebViewFragment extends Fragment
 		Bundle bundle = new Bundle();
 		if (null != item)
 		{
-			if (item instanceof CSDNItem)
+			if (item instanceof BaseItem)
 			{
-				bundle.putSerializable(ARG_ITEM, (CSDNItem) item);
+				bundle.putSerializable(ARG_ITEM, (BaseItem) item);
 			}
-			else if (item instanceof ChuanYiItem)
-			{
-				bundle.putSerializable(ARG_ITEM, (ChuanYiItem) item);
-			}
-			else if (item instanceof KJFMItem)
-			{
-				bundle.putSerializable(ARG_ITEM, (KJFMItem) item);
-			}
+
 		}
 		WebViewFragment mainFragment = new WebViewFragment();
 		mainFragment.setArguments(bundle);
@@ -67,18 +59,11 @@ public class WebViewFragment extends Fragment
 	{
 
 		Object object = getArguments().getSerializable(ARG_ITEM);
-		if (object instanceof ChuanYiItem)
+		if (object instanceof BaseItem)
 		{
-			mChuanYiItem = (ChuanYiItem) object;
+			mBaseItem = (BaseItem) object;
 		}
-		else if (object instanceof CSDNItem)
-		{
-			mCsdnItem = (CSDNItem) object;
-		}
-		else if (object instanceof KJFMItem)
-		{
-			mKjfmItem = (KJFMItem) object;
-		}
+
 		View view = inflater.inflate(R.layout.fragment_web_view, null);
 		mRoundProgressBar = (RoundProgressBar) view.findViewById(R.id.roundProgressBar);
 		mWebView = (WebView) view.findViewById(R.id.wv_webview);
@@ -94,18 +79,14 @@ public class WebViewFragment extends Fragment
 	{
 		super.onActivityCreated(savedInstanceState);
 		initWebView();
-		if (mCsdnItem != null)
+		if (mBaseItem instanceof ChuanYiItem)
 		{
-			mWebView.loadUrl(mCsdnItem.url);
-			return;
+			new WebContentTask().execute();
 		}
-		else if (mKjfmItem != null)
+		else
 		{
-			mWebView.loadUrl(mKjfmItem.url);
-			return;
+			this.mWebView.loadUrl(mBaseItem.url);
 		}
-
-		new WebContentTask().execute();
 	}
 
 	@SuppressWarnings("deprecation")
@@ -153,17 +134,23 @@ public class WebViewFragment extends Fragment
 		@Override
 		protected String doInBackground(Void... params)
 		{
-			if (null != mChuanYiItem)
+			if (mBaseItem instanceof ChuanYiItem)
 			{
 				return getChuanYiHtml();
 			}
-			else if (null != mCsdnItem)
+			else if (mBaseItem instanceof CSDNItem)
 			{
 				return getCsdnHtml();
 			}
+			else if(mBaseItem instanceof KJFMItem)
+			{
+				return getKjfmHtml();
+			}
+				
 			return null;
 		}
 
+	
 		@Override
 		protected void onPostExecute(String result)
 		{
@@ -174,13 +161,34 @@ public class WebViewFragment extends Fragment
 
 		}
 	}
+	private String getKjfmHtml()
+	{
+		String data = null;
+		try
+		{
+			Document document = Jsoup.connect(mBaseItem.url).timeout(20000).get();
+
+			Element  divTag = document.getElementById("xs-post");
+			if (null != divTag)
+			{
+				data = divTag.html();
+			}
+			data = new String(data.getBytes(), "UTF-8");
+		}
+		catch (IOException e)
+		{
+			e.printStackTrace();
+		}
+		return data;
+	}
+
 
 	private String getCsdnHtml()
 	{
 		String data = null;
 		try
 		{
-			Document document = Jsoup.connect(mCsdnItem.url).timeout(20000).get();
+			Document document = Jsoup.connect(mBaseItem.url).timeout(20000).get();
 
 			Elements divTags = document.getElementsByClass("details");
 			if (null != divTags)
@@ -205,7 +213,7 @@ public class WebViewFragment extends Fragment
 		String data = null;
 		try
 		{
-			Document document = Jsoup.connect(mChuanYiItem.url).timeout(20000).get();
+			Document document = Jsoup.connect(mBaseItem.url).timeout(20000).get();
 			Element bodyTag = document.getElementsByTag("body").get(0);
 			Elements divTags = bodyTag.getElementsByTag("div");
 			if (divTags != null && divTags.size() > 2)
