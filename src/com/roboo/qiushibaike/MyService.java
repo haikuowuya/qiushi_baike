@@ -54,10 +54,12 @@ public class MyService extends Service
 		Notification notification  = new NotificationCompat.Builder(getApplicationContext()).build();
 		notification.icon = R.drawable.ic_launcher;
 		notification.tickerText ="这是一个前台服务";
+		notification.flags |= Notification.FLAG_ONGOING_EVENT;//前台通知具有onGoing标志
 		notification.when = System.currentTimeMillis();
 		notification.contentView = new RemoteViews(getPackageName(), R.layout.notification);
 		 notification.contentIntent = PendingIntent.getActivity(getApplicationContext(), 0	, new Intent(this,CYDBActivity.class), 0);
 		 startForeground(1, notification);
+		 
 	}
 	@Override
 	public void onDestroy()

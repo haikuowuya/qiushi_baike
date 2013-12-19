@@ -13,9 +13,9 @@ public class UserQiuShiActivity extends BaseActivity
 	{
 		super.onCreate(savedInstanceState);
 		// TODO setContentView TAG
-		setContentView(R.layout.activity_show_img);
+ 
 		mItem = (QiuShiItem) getIntent().getSerializableExtra("item");
-		getSupportFragmentManager().beginTransaction().add(R.id.frame_container, UserQiuShiFragment.newInstance(mItem)).commit();
+		getSupportFragmentManager().beginTransaction().add(android.R.id.content, UserQiuShiFragment.newInstance(mItem)).commit();
 		
 	}
  

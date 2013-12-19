@@ -13,9 +13,9 @@ public class ShowImgActivity extends BaseActivity
 	{
 		super.onCreate(savedInstanceState);
 		// TODO setContentView TAG
-		setContentView(R.layout.activity_show_img);
+ 
 		mSRC = getIntent().getStringExtra("src");
-		getSupportFragmentManager().beginTransaction().add(R.id.frame_container, ShowImgFragment.newInstance(mSRC)).commit();
+		getSupportFragmentManager().beginTransaction().add(android.R.id.content, ShowImgFragment.newInstance(mSRC)).commit();
 		
 	}
 }

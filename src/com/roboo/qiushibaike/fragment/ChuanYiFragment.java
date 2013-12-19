@@ -24,7 +24,7 @@ import android.widget.Toast;
 
 import com.roboo.qiushibaike.R;
 import com.roboo.qiushibaike.WebViewActivity;
-import com.roboo.qiushibaike.adapter.ChuanYiListAdapter;
+import com.roboo.qiushibaike.adapter.BaseListAdapter;
 import com.roboo.qiushibaike.model.ChuanYiItem;
 import com.roboo.qiushibaike.ptr.PullToRefreshBase;
 import com.roboo.qiushibaike.ptr.PullToRefreshBase.OnRefreshListener2;
@@ -39,7 +39,7 @@ public class ChuanYiFragment extends Fragment
 	private TextView mTextView;
 	private LinkedList<ChuanYiItem> mData;
 	private ProgressBar mProgressBar;
-	private ChuanYiListAdapter mAdapter;
+	private BaseListAdapter<ChuanYiItem> mAdapter;
 	private static final String PREF_UPDATE_TIME_FLAG = "cydb";// 穿衣打扮
 	private int mCurrentPageNo = 1;
 	private GetDataTask mGetDataTask = new GetDataTask();
@@ -48,9 +48,9 @@ public class ChuanYiFragment extends Fragment
 	public static ChuanYiFragment newInstance()
 	{
 
-		ChuanYiFragment mainFragment = new ChuanYiFragment();
+		ChuanYiFragment chuanYiFragment = new ChuanYiFragment();
 
-		return mainFragment;
+		return chuanYiFragment;
 	}
 
 	@Override
@@ -160,7 +160,7 @@ public class ChuanYiFragment extends Fragment
 			{
 				ChuanYiItem item = (ChuanYiItem) parent.getAdapter().getItem(position);
 				Intent intent = new Intent(getActivity(), WebViewActivity.class);
-				intent.putExtra("url", item.url);
+				intent.putExtra("item", item);
 				startActivity(intent);
 			}
 		});
@@ -244,13 +244,11 @@ public class ChuanYiFragment extends Fragment
 				{
 					mData = new LinkedList<ChuanYiItem>();
 					mData.addAll(result);
-					mAdapter = new ChuanYiListAdapter(getActivity(), mData);
+					mAdapter = new BaseListAdapter<ChuanYiItem>(getActivity(), mData);
 					mPTRListView.setAdapter(mAdapter);
-
 				}
 				else
 				{
-
 					if (mCurrentPageNo == 1)// 下拉刷新有数据应该放在最前面
 					{
 						for (ChuanYiItem item : result)

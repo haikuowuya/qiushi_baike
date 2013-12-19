@@ -14,8 +14,8 @@ import com.roboo.qiushibaike.R;
 public class GridViewAdapter extends BaseAdapter
 {
 	private Context context;
-	private String[] texts ={"糗事百科","穿衣打扮"};
-	private int[] imgs = {R.drawable.ic_qsbk,R.drawable.ic_cydb};
+	private String[] texts ={"糗事百科","穿衣打扮"," CSDN "};
+	private int[] imgs = {R.drawable.ic_qsbk,R.drawable.ic_cydb,R.drawable.ic_csdn};
 	public GridViewAdapter(Context context)
 	{
 		super();

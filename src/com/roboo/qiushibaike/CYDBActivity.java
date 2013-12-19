@@ -11,9 +11,8 @@ public class CYDBActivity extends BaseActivity
 	protected void onCreate(Bundle savedInstanceState)
 	{
 		super.onCreate(savedInstanceState);
-		// TODO setContentView TAG
-		setContentView(R.layout.activity_show_img);
-		getSupportFragmentManager().beginTransaction().add(R.id.frame_container, ChuanYiFragment.newInstance()).commit();
+		// TODO setContentView TAG 
+		getSupportFragmentManager().beginTransaction().add(android.R.id.content, ChuanYiFragment.newInstance()).commit();
 		
 	}
  

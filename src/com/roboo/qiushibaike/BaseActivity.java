@@ -1,11 +1,10 @@
 package com.roboo.qiushibaike;
 
-import java.security.KeyPairGenerator;
-import java.security.spec.RSAPrivateCrtKeySpec;
-
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.view.Window;
+
+import com.roboo.qiushibaike.utils.CSDNUtils;
 
 public class BaseActivity extends FragmentActivity
 {
@@ -15,7 +14,26 @@ public class BaseActivity extends FragmentActivity
 	{
 		super.onCreate(savedInstanceState);
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
-	 
+//		test();
+	}
+
+	private void test()
+	{
+		 new Thread(){
+			 @Override
+			public void run()
+			{
+				 try
+				{
+					CSDNUtils.handleCSDNBlogData("1");
+				}
+				catch (Exception e)
+				{
+				 
+					e.printStackTrace();
+				}
+			}
+		 }.start();
 	}
 	
 

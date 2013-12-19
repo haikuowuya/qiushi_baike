@@ -2,6 +2,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_gravity="center_vertical"
+    android:layout_margin="10dp"
       >
 
     <GridView
@@ -11,6 +12,7 @@
         android:background="#FFFFFF"
         android:cacheColorHint="#00000000"
         android:horizontalSpacing="10dp"
+        android:verticalSpacing="10dp"
         android:numColumns="2"
         android:stretchMode="columnWidth" >
     </GridView>

@@ -1,10 +1,7 @@
 package com.roboo.qiushibaike.fragment;
 
-import android.app.IntentService;
 import android.app.Service;
-import android.content.AsyncQueryHandler;
 import android.content.ComponentName;
-import android.content.ContentResolver;
 import android.content.Intent;
 import android.content.ServiceConnection;
 import android.os.Bundle;
@@ -18,6 +15,7 @@ import android.widget.AdapterView.OnItemClickListener;
 import android.widget.Button;
 import android.widget.GridView;
 
+import com.roboo.qiushibaike.CSDNActivity;
 import com.roboo.qiushibaike.CYDBActivity;
 import com.roboo.qiushibaike.MainActivity;
 import com.roboo.qiushibaike.MyIntentService;
@@ -109,7 +107,9 @@ public class HomeFragment extends Fragment implements View.OnClickListener
 				case 1://穿衣打扮
 					intent =new Intent(getActivity(),CYDBActivity.class);
 					break;
-				
+				case 2://csdn
+					intent = new Intent(getActivity(),CSDNActivity.class);
+				break;
 				default:
 					break;
 				}

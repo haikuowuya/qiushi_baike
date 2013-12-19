@@ -8,8 +8,6 @@ import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
-import android.R.attr;
-
 import com.roboo.qiushibaike.model.ChuanYiItem;
 
 /**

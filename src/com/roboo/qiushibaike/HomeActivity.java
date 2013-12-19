@@ -11,8 +11,8 @@ public class HomeActivity extends BaseActivity
 	{
 		super.onCreate(savedInstanceState);
 		// TODO setContentView TAG
-		setContentView(R.layout.activity_show_img);
-		getSupportFragmentManager().beginTransaction().add(R.id.frame_container, HomeFragment.newInstance()).commit();
+		 
+		getSupportFragmentManager().beginTransaction().add(android.R.id.content, HomeFragment.newInstance()).commit();
 		
 	}
 }

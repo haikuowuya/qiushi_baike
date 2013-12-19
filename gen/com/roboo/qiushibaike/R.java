@@ -237,16 +237,17 @@ containing a value of this type.
     public static final class drawable {
         public static final int default_ptr_flip=0x7f020000;
         public static final int default_ptr_rotate=0x7f020001;
-        public static final int ic_cydb=0x7f020002;
-        public static final int ic_default=0x7f020003;
-        public static final int ic_down=0x7f020004;
-        public static final int ic_launcher=0x7f020005;
-        public static final int ic_qsbk=0x7f020006;
-        public static final int ic_up=0x7f020007;
-        public static final int indicator_arrow=0x7f020008;
-        public static final int indicator_bg_bottom=0x7f020009;
-        public static final int indicator_bg_top=0x7f02000a;
-        public static final int list_item_selector=0x7f02000b;
+        public static final int ic_csdn=0x7f020002;
+        public static final int ic_cydb=0x7f020003;
+        public static final int ic_default=0x7f020004;
+        public static final int ic_down=0x7f020005;
+        public static final int ic_launcher=0x7f020006;
+        public static final int ic_qsbk=0x7f020007;
+        public static final int ic_up=0x7f020008;
+        public static final int indicator_arrow=0x7f020009;
+        public static final int indicator_bg_bottom=0x7f02000a;
+        public static final int indicator_bg_top=0x7f02000b;
+        public static final int list_item_selector=0x7f02000c;
     }
     public static final class id {
         public static final int FILL=0x7f07000a;
@@ -302,18 +303,17 @@ containing a value of this type.
     }
     public static final class layout {
         public static final int activity_main=0x7f030000;
-        public static final int activity_show_img=0x7f030001;
-        public static final int chuanyi_list_item=0x7f030002;
-        public static final int comment_list_item=0x7f030003;
-        public static final int fragment_home=0x7f030004;
-        public static final int fragment_show_img=0x7f030005;
-        public static final int fragment_web_view=0x7f030006;
-        public static final int grid_list_item=0x7f030007;
-        public static final int notification=0x7f030008;
-        public static final int ptr_listview=0x7f030009;
-        public static final int pull_to_refresh_header_horizontal=0x7f03000a;
-        public static final int pull_to_refresh_header_vertical=0x7f03000b;
-        public static final int qiushi_list_item=0x7f03000c;
+        public static final int base_list_item=0x7f030001;
+        public static final int comment_list_item=0x7f030002;
+        public static final int fragment_home=0x7f030003;
+        public static final int fragment_show_img=0x7f030004;
+        public static final int fragment_web_view=0x7f030005;
+        public static final int grid_list_item=0x7f030006;
+        public static final int notification=0x7f030007;
+        public static final int ptr_listview=0x7f030008;
+        public static final int pull_to_refresh_header_horizontal=0x7f030009;
+        public static final int pull_to_refresh_header_vertical=0x7f03000a;
+        public static final int qiushi_list_item=0x7f03000b;
     }
     public static final class menu {
         public static final int activity_main=0x7f0a0000;
