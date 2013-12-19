@@ -17,6 +17,7 @@ import android.widget.GridView;
 
 import com.roboo.qiushibaike.CSDNActivity;
 import com.roboo.qiushibaike.CYDBActivity;
+import com.roboo.qiushibaike.KJFMActivity;
 import com.roboo.qiushibaike.MainActivity;
 import com.roboo.qiushibaike.MyIntentService;
 import com.roboo.qiushibaike.MyService;
@@ -109,6 +110,9 @@ public class HomeFragment extends Fragment implements View.OnClickListener
 					break;
 				case 2://csdn
 					intent = new Intent(getActivity(),CSDNActivity.class);
+					break;
+				case 3://科技锋芒
+					intent = new Intent(getActivity(),KJFMActivity.class);
 				break;
 				default:
 					break;

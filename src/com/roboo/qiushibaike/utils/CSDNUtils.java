@@ -55,7 +55,7 @@ public class CSDNUtils
 									item.title = tmpJsonObject.optString("title", null);
 									item.content = tmpJsonObject.optString("description", null);
 									item.url = tmpJsonObject.optString("url", null);
-									item.authorImgUrl = AUTHOR_IMG_URL;
+									item.img = AUTHOR_IMG_URL;
 									System.out.println("item = 【" + item + " 】");
 									items.add(item);
 								}
@@ -104,7 +104,7 @@ public class CSDNUtils
 					{
 						String tmpImg = imgElements.get(0).attr("src");
 						tmpImg  = tmpImg.replaceFirst("/4_", "/1_");
-						item.authorImgUrl = tmpImg;
+						item.img = tmpImg;
 //						System.out.println("imgUrl = " + item.authorImgUrl  );
 					}
 				}

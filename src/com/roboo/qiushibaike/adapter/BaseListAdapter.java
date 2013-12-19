@@ -20,10 +20,11 @@ import com.android.volley.toolbox.Volley;
 import com.nineoldandroids.animation.AnimatorSet;
 import com.nineoldandroids.animation.ObjectAnimator;
 import com.roboo.qiushibaike.R;
+import com.roboo.qiushibaike.model.BaseItem;
 import com.roboo.qiushibaike.model.CSDNItem;
 import com.roboo.qiushibaike.model.ChuanYiItem;
 
-public class BaseListAdapter<E > extends BaseAdapter
+public class BaseListAdapter<E> extends BaseAdapter
 {
 	private Context context;
 	private LinkedList<E> data;
@@ -31,7 +32,6 @@ public class BaseListAdapter<E > extends BaseAdapter
 	private RequestQueue mQueue;
 	private ImageCache mImageCache;
 	private DisplayMetrics mDisplayMetrics;
- 
 
 	public BaseListAdapter(Context context, LinkedList<E> data)
 	{
@@ -68,21 +68,38 @@ public class BaseListAdapter<E > extends BaseAdapter
 	@Override
 	public View getView(int position, View convertView, ViewGroup parent)
 	{
-		 E e = data.get(position);
-		 ChuanYiItem chuanYiItem = null;
-		 CSDNItem csdnItem = null;
-		 if(e instanceof ChuanYiItem)
-		 {
-			   chuanYiItem = (ChuanYiItem) e;
-			   return getChuanYiView(convertView, parent, chuanYiItem);
-		 }
-		 else  if(e instanceof CSDNItem)
-		 {
-			 csdnItem = (CSDNItem) e;
-			 return getCSDNView(convertView, parent, csdnItem);
-		 }
-		 return convertView;
-		 
+		E tmpItem = data.get(position);
+		BaseItem item = null;
+		if(tmpItem instanceof BaseItem)
+		{
+			item = (BaseItem) tmpItem;
+		}
+		if (null != item)
+		{
+			ViewHolder holder;
+			if (convertView == null)
+			{
+				holder = new ViewHolder();
+				convertView = LayoutInflater.from(parent.getContext()).inflate(R.layout.base_list_item, null);
+				holder.mIVImg = (ImageView) convertView.findViewById(R.id.iv_img);
+				holder.mTVContent = (TextView) convertView.findViewById(R.id.tv_content);
+				holder.mTVTitle = (TextView) convertView.findViewById(R.id.tv_title);
+				convertView.setTag(holder);
+			}
+			else
+			{
+				holder = (ViewHolder) convertView.getTag();
+			}
+			holder.mTVContent.setText(item.content);
+			holder.mTVTitle.setText(item.title);
+			mImageLoader.get(item.img, ImageLoader.getImageListener(holder.mIVImg, R.drawable.ic_launcher, R.drawable.ic_launcher), (int) (120 * mDisplayMetrics.density),
+					(int) (120 * mDisplayMetrics.density));
+
+		}
+		setViewAnimator(convertView);
+
+		return convertView;
+
 	}
 
 	@SuppressWarnings("unchecked")
@@ -91,7 +108,6 @@ public class BaseListAdapter<E > extends BaseAdapter
 		if (null != chuanYiItem)
 		{
 			ViewHolder holder;
-
 			if (convertView == null)
 			{
 				holder = new ViewHolder();
@@ -107,19 +123,21 @@ public class BaseListAdapter<E > extends BaseAdapter
 			}
 			holder.mTVContent.setText(chuanYiItem.content);
 			holder.mTVTitle.setText(chuanYiItem.title);
-			mImageLoader.get(chuanYiItem.img, ImageLoader.getImageListener(holder.mIVImg, R.drawable.ic_launcher, R.drawable.ic_launcher), (int)(120*mDisplayMetrics.density), (int)(120*mDisplayMetrics.density));
+			mImageLoader.get(chuanYiItem.img, ImageLoader.getImageListener(holder.mIVImg, R.drawable.ic_launcher, R.drawable.ic_launcher), (int) (120 * mDisplayMetrics.density),
+					(int) (120 * mDisplayMetrics.density));
 
 		}
 		setViewAnimator(convertView);
 		return convertView;
 	}
+
 	@SuppressWarnings("unchecked")
 	private View getCSDNView(View convertView, ViewGroup parent, CSDNItem csdnItem)
 	{
 		if (null != csdnItem)
 		{
 			ViewHolder holder;
-			
+
 			if (convertView == null)
 			{
 				holder = new ViewHolder();
@@ -135,8 +153,9 @@ public class BaseListAdapter<E > extends BaseAdapter
 			}
 			holder.mTVContent.setText(csdnItem.content);
 			holder.mTVTitle.setText(csdnItem.title);
-			mImageLoader.get(csdnItem.authorImgUrl, ImageLoader.getImageListener(holder.mIVImg, R.drawable.ic_launcher, R.drawable.ic_launcher), (int)(120*mDisplayMetrics.density), (int)(120*mDisplayMetrics.density));
-			
+			mImageLoader.get(csdnItem.img, ImageLoader.getImageListener(holder.mIVImg, R.drawable.ic_launcher, R.drawable.ic_launcher), (int) (120 * mDisplayMetrics.density),
+					(int) (120 * mDisplayMetrics.density));
+
 		}
 		setViewAnimator(convertView);
 		return convertView;

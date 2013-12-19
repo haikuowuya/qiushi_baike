@@ -1,28 +1,23 @@
 package com.roboo.qiushibaike.model;
 
-import java.io.Serializable;
 
-public class CSDNItem implements Serializable
+public class CSDNItem  extends BaseItem
 {
-	public String title;
-	public String content;
-	public String authorImgUrl;
-	public String url;
 	public CSDNItem()
 	{
 		 
 	}
-	public CSDNItem(String title, String content, String authorImgUrl, String url)
+	public CSDNItem(String title, String content, String img, String url)
 	{
 		this.title = title;
 		this.content = content;
-		this.authorImgUrl = authorImgUrl;
+		this.img = img;
 		this.url = url;
 	}
 	@Override
 	public String toString()
 	{
-		 return "title = " +title + " url = " + url + " content = " + content + " authorImgUrl = " + authorImgUrl;
+		 return "title = " +title + " url = " + url + " content = " + content + " img = " + img;
 	}
 	
 }

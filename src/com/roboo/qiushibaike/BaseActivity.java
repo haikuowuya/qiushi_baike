@@ -5,6 +5,7 @@ import android.support.v4.app.FragmentActivity;
 import android.view.Window;
 
 import com.roboo.qiushibaike.utils.CSDNUtils;
+import com.roboo.qiushibaike.utils.KJFMUtils;
 
 public class BaseActivity extends FragmentActivity
 {
@@ -14,10 +15,11 @@ public class BaseActivity extends FragmentActivity
 	{
 		super.onCreate(savedInstanceState);
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
-//		test();
+//		testCSDN();
+//		testKJFM();
 	}
 
-	private void test()
+	private void testCSDN()
 	{
 		 new Thread(){
 			 @Override
@@ -34,6 +36,25 @@ public class BaseActivity extends FragmentActivity
 				}
 			}
 		 }.start();
+	}
+	
+	private void testKJFM()
+	{
+		new Thread(){
+			@Override
+			public void run()
+			{
+				try
+				{
+					KJFMUtils.handleKJFMItems("1");
+				}
+				catch (Exception e)
+				{
+					
+					e.printStackTrace();
+				}
+			}
+		}.start();
 	}
 	
 

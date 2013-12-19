@@ -241,13 +241,14 @@ containing a value of this type.
         public static final int ic_cydb=0x7f020003;
         public static final int ic_default=0x7f020004;
         public static final int ic_down=0x7f020005;
-        public static final int ic_launcher=0x7f020006;
-        public static final int ic_qsbk=0x7f020007;
-        public static final int ic_up=0x7f020008;
-        public static final int indicator_arrow=0x7f020009;
-        public static final int indicator_bg_bottom=0x7f02000a;
-        public static final int indicator_bg_top=0x7f02000b;
-        public static final int list_item_selector=0x7f02000c;
+        public static final int ic_kjfm=0x7f020006;
+        public static final int ic_launcher=0x7f020007;
+        public static final int ic_qsbk=0x7f020008;
+        public static final int ic_up=0x7f020009;
+        public static final int indicator_arrow=0x7f02000a;
+        public static final int indicator_bg_bottom=0x7f02000b;
+        public static final int indicator_bg_top=0x7f02000c;
+        public static final int list_item_selector=0x7f02000d;
     }
     public static final class id {
         public static final int FILL=0x7f07000a;

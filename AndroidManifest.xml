@@ -28,6 +28,7 @@
         <activity android:name=".MainActivity" />
         <activity android:name=".CYDBActivity" />
         <activity android:name=".CSDNActivity" />
+        <activity android:name=".KJFMActivity" />
         <activity android:name=".ShowImgActivity" />
         <activity android:name=".UserQiuShiActivity" />
         <activity android:name=".WebViewActivity" />

@@ -24,6 +24,7 @@ import android.widget.TextView;
 import com.roboo.qiushibaike.R;
 import com.roboo.qiushibaike.model.CSDNItem;
 import com.roboo.qiushibaike.model.ChuanYiItem;
+import com.roboo.qiushibaike.model.KJFMItem;
 import com.roboo.qiushibaike.view.RoundProgressBar;
 
 @SuppressLint("SetJavaScriptEnabled")
@@ -32,6 +33,7 @@ public class WebViewFragment extends Fragment
 	private WebView mWebView;
 	private static final String ARG_ITEM = "item";
 	private ChuanYiItem mChuanYiItem;
+	private KJFMItem mKjfmItem;
 	private CSDNItem mCsdnItem;
 	private RoundProgressBar mRoundProgressBar;
 	private ProgressBar mProgressBar;
@@ -49,6 +51,10 @@ public class WebViewFragment extends Fragment
 			else if (item instanceof ChuanYiItem)
 			{
 				bundle.putSerializable(ARG_ITEM, (ChuanYiItem) item);
+			}
+			else if (item instanceof KJFMItem)
+			{
+				bundle.putSerializable(ARG_ITEM, (KJFMItem) item);
 			}
 		}
 		WebViewFragment mainFragment = new WebViewFragment();
@@ -69,6 +75,10 @@ public class WebViewFragment extends Fragment
 		{
 			mCsdnItem = (CSDNItem) object;
 		}
+		else if (object instanceof KJFMItem)
+		{
+			mKjfmItem = (KJFMItem) object;
+		}
 		View view = inflater.inflate(R.layout.fragment_web_view, null);
 		mRoundProgressBar = (RoundProgressBar) view.findViewById(R.id.roundProgressBar);
 		mWebView = (WebView) view.findViewById(R.id.wv_webview);
@@ -84,12 +94,17 @@ public class WebViewFragment extends Fragment
 	{
 		super.onActivityCreated(savedInstanceState);
 		initWebView();
-		if(mCsdnItem != null)
+		if (mCsdnItem != null)
 		{
 			mWebView.loadUrl(mCsdnItem.url);
 			return;
 		}
-		 
+		else if (mKjfmItem != null)
+		{
+			mWebView.loadUrl(mKjfmItem.url);
+			return;
+		}
+
 		new WebContentTask().execute();
 	}
 
@@ -98,7 +113,7 @@ public class WebViewFragment extends Fragment
 	{
 		this.mWebView.getSettings().setJavaScriptEnabled(true);
 		this.mWebView.getSettings().setDefaultTextEncodingName("UTF-8");
-//		this.mWebView.setInitialScale(100);
+		// this.mWebView.setInitialScale(100);
 		// this.mWebView.getSettings().setUseWideViewPort(true);
 		this.mWebView.getSettings().setLoadWithOverviewMode(true);
 		this.mWebView.getSettings().setTextSize(TextSize.NORMAL);
@@ -166,16 +181,16 @@ public class WebViewFragment extends Fragment
 		try
 		{
 			Document document = Jsoup.connect(mCsdnItem.url).timeout(20000).get();
-			 
+
 			Elements divTags = document.getElementsByClass("details");
-			 if(null != divTags)
-			 {
+			if (null != divTags)
+			{
 				data = divTags.html();
-			 }
-			 if(null == data)
-			 {
-				 data = document.html();
-			 }
+			}
+			if (null == data)
+			{
+				data = document.html();
+			}
 			data = new String(data.getBytes(), "UTF-8");
 		}
 		catch (IOException e)
